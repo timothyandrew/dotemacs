@@ -21,8 +21,6 @@
   (add-hook 'after-init-hook 'nyan-mode)
   (add-hook 'after-init-hook 'prettify-symbols-mode)
 
-  (guru-global-mode +1)
-
   ;; Custom Keybindings
 
   (defun disable-keybinding ()
