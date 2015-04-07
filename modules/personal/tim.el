@@ -51,7 +51,18 @@
    (defun track-mouse (e))
    (setq mouse-sel-mode t))
 
- ;; Custom Keybindings
+ (define-key input-decode-map "\e[1;5A" [C-up])
+ (define-key input-decode-map "\e[1;5B" [C-down])
+ (define-key input-decode-map "\e[1;5C" [C-right])
+ (define-key input-decode-map "\e[1;5D" [C-left])
+
+ (define-key input-decode-map "\e[40;6u" 'sp-backward-slurp-sexp)
+ (define-key input-decode-map "\e[41;6u" 'sp-forward-slurp-sexp)
+
+ (define-key input-decode-map "\e[123;6u" 'sp-backward-barf-sexp)
+ (define-key input-decode-map "\e[125;6u" 'sp-forward-barf-sexp)
+
+  ;; Custom Keybindings
 
  (defun disable-keybinding ()
    "Just display a message instead of invoking this keybinding."
