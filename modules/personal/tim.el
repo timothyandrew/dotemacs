@@ -74,6 +74,7 @@
  (setq x-select-enable-clipboard t)
  (setq x-select-enable-primary t)
 
+ (global-hl-line-mode 0)
 
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
  (global-set-key (kbd "s-k") 'kill-whole-line)
