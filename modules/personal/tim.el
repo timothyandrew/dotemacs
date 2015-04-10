@@ -1,4 +1,4 @@
-(nel:require-packages 'guru-mode 'helm 'god-mode 'sublimity 'ace-window)
+(nel:require-packages 'guru-mode 'helm 'god-mode 'sublimity 'ace-window 'ace-jump-mode)
 
 (nel:run-after-initializing
  ;; Fonts and Formatting
@@ -34,7 +34,7 @@
  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+ (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
  (winner-mode 1)
 
@@ -62,7 +62,7 @@
  (define-key input-decode-map "\e[123;6u" 'sp-backward-barf-sexp)
  (define-key input-decode-map "\e[125;6u" 'sp-forward-barf-sexp)
 
-  ;; Custom Keybindings
+ ;; Custom Keybindings
 
  (defun disable-keybinding ()
    "Just display a message instead of invoking this keybinding."
@@ -79,9 +79,20 @@
  ;; ACE Window
  (global-set-key (kbd "M-p") 'ace-window)
  (add-hook 'cider-repl-mode-hook
-          (lambda ()
-            (progn
-              (local-set-key (kbd "M-p") 'ace-window))))
+           (lambda ()
+             (progn
+               (local-set-key (kbd "M-p") 'ace-window))))
+ (add-hook 'magit-mode-hook
+           (lambda ()
+             (progn
+               (local-set-key (kbd "M-p") 'ace-window))))
+
+ ;; Disable GUI Stuff
+ (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+ (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+ (setq menu-prompting nil)
+
+ (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
  (global-set-key (kbd "s-k") 'kill-whole-line)
