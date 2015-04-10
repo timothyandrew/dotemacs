@@ -1,4 +1,4 @@
-(nel:require-packages 'guru-mode 'helm 'god-mode 'sublimity)
+(nel:require-packages 'guru-mode 'helm 'god-mode 'sublimity 'ace-window)
 
 (nel:run-after-initializing
  ;; Fonts and Formatting
@@ -75,6 +75,13 @@
  (setq x-select-enable-primary t)
 
  (global-hl-line-mode 0)
+
+ ;; ACE Window
+ (global-set-key (kbd "M-p") 'ace-window)
+ (add-hook 'cider-repl-mode-hook
+          (lambda ()
+            (progn
+              (local-set-key (kbd "M-p") 'ace-window))))
 
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
  (global-set-key (kbd "s-k") 'kill-whole-line)
