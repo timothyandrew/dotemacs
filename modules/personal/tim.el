@@ -70,6 +70,11 @@
    (message "Sorry, can't do this!"))
 
 
+ ;; Copy to System Clipboard on Linux
+ (setq x-select-enable-clipboard t)
+ (setq x-select-enable-primary t)
+
+
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
  (global-set-key (kbd "s-k") 'kill-whole-line)
  (global-set-key [f8] 'neotree-toggle)
