@@ -87,13 +87,26 @@
              (progn
                (local-set-key (kbd "M-p") 'ace-window))))
 
+ ;; SSH Agent
+
+ (defun refresh-ssh-agent ()
+   (interactive)
+   (with-temp-buffer
+     (insert-file-contents (expand-file-name "~/.ssh/latestagent"))
+     (dolist (varname '("SSH_AUTH_SOCK" "SSH_CLIENT" "SSH_TTY" "SSH_CONNECTION"))
+       (goto-char 0)
+       (re-search-forward (concat "export " varname "=\"\\(.*\\)\""))
+       (setenv varname (match-string 1)))))
+
  ;; Disable GUI Stuff
  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
  (setq menu-prompting nil)
 
  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+ (define-key global-map (kbd "M-o") 'ace-jump-mode)
 
+ (global-set-key (kbd "C-c r") 'refresh-ssh-agent)
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
  (global-set-key (kbd "s-k") 'kill-whole-line)
  (global-set-key [f8] 'neotree-toggle)
