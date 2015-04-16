@@ -103,8 +103,13 @@
  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
  (setq menu-prompting nil)
 
+ ;; Uniquify
+ (require 'uniquify)
+ (setq uniquify-buffer-name-style 'post-forward)
+
  (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
  (define-key global-map (kbd "M-o") 'ace-jump-mode)
+
 
  (global-set-key (kbd "C-c r") 'refresh-ssh-agent)
  (global-set-key (kbd "M-C-w") 'sp-copy-sexp)
